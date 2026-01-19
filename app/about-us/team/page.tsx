@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, X, Linkedin, Mail } from 'lucide-react';
 import PageHero from '@/components/sections/PageHero';
@@ -47,14 +48,15 @@ export default function TeamPage() {
             >
               {/* Image */}
               <div className="relative">
-                <div className="aspect-[4/5] bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-primary-300 text-[120px] font-display">
-                      {featuredMember.name.charAt(0)}
-                    </span>
-                  </div>
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
+                  <Image
+                    src={featuredMember.image}
+                    alt={featuredMember.name}
+                    fill
+                    className="object-cover object-top"
+                  />
                 </div>
-                <div className="absolute -bottom-4 -right-4 bg-primary-500 text-white px-6 py-3 rounded-xl">
+                <div className="absolute -bottom-4 -right-4 bg-primary-500 text-white px-6 py-3 rounded-xl shadow-lg">
                   <span className="text-sm font-medium">Founder & CEO</span>
                 </div>
               </div>
@@ -125,12 +127,13 @@ export default function TeamPage() {
                 className="group text-left bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all"
               >
                 {/* Image */}
-                <div className="aspect-square bg-gradient-to-br from-primary-100 to-primary-50 relative overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-primary-300 text-6xl font-display group-hover:scale-110 transition-transform">
-                      {member.name.charAt(0)}
-                    </span>
-                  </div>
+                <div className="aspect-square relative overflow-hidden">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
                   <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/10 transition-colors" />
                 </div>
 
@@ -167,10 +170,13 @@ export default function TeamPage() {
               {/* Header */}
               <div className="sticky top-0 bg-white border-b border-gray-100 p-6 flex items-start justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-50 rounded-xl flex items-center justify-center">
-                    <span className="text-primary-400 text-2xl font-display">
-                      {selectedMember.name.charAt(0)}
-                    </span>
+                  <div className="w-16 h-16 rounded-xl overflow-hidden relative">
+                    <Image
+                      src={selectedMember.image}
+                      alt={selectedMember.name}
+                      fill
+                      className="object-cover object-top"
+                    />
                   </div>
                   <div>
                     <h3 className="font-semibold text-xl text-gray-900">

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { teamMembers } from '@/data/config/team';
@@ -64,17 +65,18 @@ const TeamPreview = () => {
               >
                 <Link
                   href={`/about-us/team#${member.id}`}
-                  className="block relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="block relative overflow-hidden rounded-2xl aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300"
                 >
+                  {/* Team member photo */}
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+
                   {/* Gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-t ${accent.gradient} to-transparent`} />
-
-                  {/* Avatar placeholder */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className={`w-20 h-20 ${accent.bg} rounded-full flex items-center justify-center text-white text-2xl font-semibold shadow-lg ring-4 ${accent.ring} group-hover:scale-110 transition-transform duration-300`}>
-                      {member.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                  </div>
 
                   {/* Info */}
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
