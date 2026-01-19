@@ -1,18 +1,19 @@
-/* Configure colors at https://shipixen.com/color-theme-explorer-shadcn */
+/* BridgeWork Partners Design System Colors */
+/* Based on HR Pro Framer Template */
 const colors = {
   primary: {
-    lighter: '#fde047',
-    light: '#facc15',
-    main: '#eab308',
-    dark: '#ca8a04',
-    darker: '#a16207',
+    lighter: '#3A8A8A',
+    light: '#2A7A7A',
+    main: '#1B5E5E',
+    dark: '#164D4D',
+    darker: '#0F3A3A',
   },
   secondary: {
-    lighter: '#6ee7b7',
-    light: '#34d399',
-    main: '#10b981',
-    dark: '#059669',
-    darker: '#047857',
+    lighter: '#F5E6D3',
+    light: '#E8D4BC',
+    main: '#D4A574',
+    dark: '#C4925E',
+    darker: '#B07F48',
   },
 };
 
