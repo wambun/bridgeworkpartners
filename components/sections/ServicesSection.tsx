@@ -38,25 +38,81 @@ const getHoverBorderClass = (color: AccentColor) => {
 };
 
 const ServicesSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.4, 0.25, 1] as const,
+      },
+    },
+  };
+
   return (
     <section className="py-20 lg:py-32 bg-white relative overflow-hidden">
-      {/* Subtle background decorations */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent2-500 rounded-full blur-3xl opacity-5" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent3-500 rounded-full blur-3xl opacity-5" />
+      {/* Animated background decorations */}
+      <motion.div
+        animate={{
+          x: [0, 30, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute top-0 right-0 w-96 h-96 bg-accent2-500 rounded-full blur-3xl opacity-5"
+      />
+      <motion.div
+        animate={{
+          x: [0, -20, 0],
+          y: [0, 30, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute bottom-0 left-0 w-96 h-96 bg-accent3-500 rounded-full blur-3xl opacity-5"
+      />
 
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-primary-500 mb-4 bg-primary-50 px-4 py-2 rounded-full">
-            <span className="w-2 h-2 bg-accent1-500 rounded-full" />
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary-500 mb-4 bg-primary-50 px-4 py-2 rounded-full"
+          >
+            <motion.span
+              animate={{ scale: [1, 1.3, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-2 h-2 bg-accent1-500 rounded-full"
+            />
             Our Services
-          </span>
+          </motion.span>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-6">
             Platform that matches businesses<br className="hidden sm:block" /> with top-tier talent.
           </h2>
@@ -67,7 +123,13 @@ const ServicesSection = () => {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {services.map((service, index) => {
             const colorClasses = accentColorClasses[service.accentColor];
             const borderClass = getBorderClass(service.accentColor);
@@ -76,22 +138,25 @@ const ServicesSection = () => {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={cardVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
                 <Link
                   href={service.href}
-                  className={`group block bg-white border border-gray-200 border-t-4 ${borderClass} rounded-2xl p-6 hover:shadow-premium-lg ${hoverBorderClass} transition-all duration-300`}
+                  className={`group block bg-white border border-gray-200 border-t-4 ${borderClass} rounded-2xl p-6 hover:shadow-premium-lg ${hoverBorderClass} transition-all duration-300 h-full`}
                 >
                   {/* Icon */}
-                  <div className={`w-12 h-12 ${colorClasses.bgLight} ${colorClasses.text} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-all duration-300 shadow-sm`}>
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                    className={`w-12 h-12 ${colorClasses.bgLight} ${colorClasses.text} rounded-xl flex items-center justify-center mb-5 shadow-sm`}
+                  >
                     {iconMap[service.icon]}
-                  </div>
+                  </motion.div>
 
                   {/* Content */}
-                  <h3 className={`font-semibold text-xl text-gray-900 mb-2 group-hover:${colorClasses.text.replace('text-', 'text-')} transition-colors`}>
+                  <h3 className="font-semibold text-xl text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">
@@ -100,42 +165,56 @@ const ServicesSection = () => {
 
                   {/* Features */}
                   <div className="space-y-2 mb-5">
-                    {service.features.map((feature) => (
-                      <div key={feature} className="flex items-center gap-2 text-sm text-gray-500">
+                    {service.features.map((feature, featureIndex) => (
+                      <motion.div
+                        key={feature}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 + featureIndex * 0.05 }}
+                        className="flex items-center gap-2 text-sm text-gray-500"
+                      >
                         <svg className={`w-4 h-4 ${colorClasses.text}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                         {feature}
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
 
                   {/* Link */}
                   <div className={`flex items-center gap-1 text-sm font-medium ${colorClasses.text} group-hover:gap-2 transition-all`}>
                     <span>Details</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <motion.span
+                      animate={{ x: [0, 3, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </motion.span>
                   </div>
                 </Link>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-full font-medium hover:gap-3 transition-all shadow-lg shadow-primary-500/30 hover:shadow-xl hover:scale-105"
-          >
-            <span>View all services</span>
-            <ChevronRight className="w-4 h-4" />
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-full font-medium hover:gap-3 transition-all shadow-lg shadow-primary-500/30 hover:shadow-xl"
+            >
+              <span>View all services</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </section>
