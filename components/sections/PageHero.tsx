@@ -12,7 +12,7 @@ const PageHero = ({ badge, title, subtitle }: PageHeroProps) => {
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-accent2-50/20" />
       <div
         className="absolute inset-0 opacity-30"
         style={{
@@ -20,14 +20,20 @@ const PageHero = ({ badge, title, subtitle }: PageHeroProps) => {
         }}
       />
 
+      {/* Decorative Accent Orbs */}
+      <div className="absolute top-10 right-1/4 w-72 h-72 bg-accent2-500 rounded-full blur-3xl opacity-10" />
+      <div className="absolute bottom-0 left-1/4 w-48 h-48 bg-accent3-500 rounded-full blur-3xl opacity-10" />
+      <div className="absolute top-1/2 -translate-y-1/2 -left-10 w-64 h-64 bg-accent1-500 rounded-full blur-3xl opacity-8" />
+
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
         {badge && (
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-block text-sm font-medium text-primary-500 bg-primary-50 px-4 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary-600 bg-gradient-to-r from-primary-50 to-accent2-50 px-5 py-2.5 rounded-full mb-6 border border-primary-100/50 shadow-sm"
           >
+            <span className="w-2 h-2 bg-accent1-500 rounded-full animate-pulse" />
             {badge}
           </motion.span>
         )}

@@ -1,5 +1,5 @@
 /* BridgeWork Partners Design System Colors */
-/* Based on HR Pro Framer Template */
+/* Premium Multi-Accent Color System */
 const colors = {
   primary: {
     lighter: '#3A8A8A',
@@ -14,6 +14,30 @@ const colors = {
     main: '#D4A574',
     dark: '#C4925E',
     darker: '#B07F48',
+  },
+  // Orange/Gold - Executive/Premium feel
+  accent1: {
+    lighter: '#F5DDB5',
+    light: '#EECA85',
+    main: '#E5A855',
+    dark: '#D4942A',
+    darker: '#B87A1A',
+  },
+  // Blue/Indigo - Technology/Professional
+  accent2: {
+    lighter: '#C5CDF0',
+    light: '#9EABE5',
+    main: '#5B6AD0',
+    dark: '#4555B8',
+    darker: '#3544A0',
+  },
+  // Purple/Magenta - Creative/Dynamic
+  accent3: {
+    lighter: '#E5C5EA',
+    light: '#D49CDD',
+    main: '#B866C6',
+    dark: '#A44DB4',
+    darker: '#8E3A9C',
   },
 };
 

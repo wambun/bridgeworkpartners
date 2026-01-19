@@ -1,3 +1,5 @@
+import type { AccentColor } from '@/lib/colorUtils';
+
 export interface Service {
   id: string;
   name: string;
@@ -8,6 +10,7 @@ export interface Service {
   benefits: { title: string; description: string }[];
   icon: string;
   href: string;
+  accentColor: AccentColor;
 }
 
 export const services: Service[] = [
@@ -26,6 +29,7 @@ export const services: Service[] = [
     ],
     icon: 'laptop',
     href: '/services/bridgeworktech',
+    accentColor: 'accent2', // Blue/Indigo - Technology
   },
   {
     id: 'bridgeworksearch',
@@ -42,6 +46,7 @@ export const services: Service[] = [
     ],
     icon: 'search',
     href: '/services/bridgeworksearch',
+    accentColor: 'accent1', // Orange/Gold - Executive/Premium
   },
   {
     id: 'bridgeworkstaff',
@@ -58,6 +63,7 @@ export const services: Service[] = [
     ],
     icon: 'users',
     href: '/services/bridgeworkstaff',
+    accentColor: 'accent3', // Purple/Magenta - Creative
   },
   {
     id: 'bridgeworkhr',
@@ -74,6 +80,7 @@ export const services: Service[] = [
     ],
     icon: 'heart',
     href: '/services/bridgeworkhr',
+    accentColor: 'primary', // Teal - Brand core
   },
   {
     id: 'bridgeworksled',
@@ -90,6 +97,7 @@ export const services: Service[] = [
     ],
     icon: 'building',
     href: '/services/bridgeworksled',
+    accentColor: 'accent2', // Blue/Indigo - Government
   },
   {
     id: 'bridgeworkrpo',
@@ -106,5 +114,6 @@ export const services: Service[] = [
     ],
     icon: 'refresh',
     href: '/services/bridgeworkrpo',
+    accentColor: 'accent3', // Purple/Magenta - Process
   },
 ];
