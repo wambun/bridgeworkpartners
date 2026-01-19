@@ -23,8 +23,8 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['var(--font-space-default)', ...fontFamily.sans],
-        display: ['var(--font-space-display)', ...fontFamily.sans],
+        sans: ['var(--font-parkinsans)', ...fontFamily.sans],
+        display: ['var(--font-parkinsans)', ...fontFamily.sans],
         cursive: ['cursive'],
       },
       colors: {

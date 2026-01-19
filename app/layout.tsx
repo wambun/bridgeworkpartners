@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Parkinsans } from 'next/font/google';
 import { siteConfig } from '@/data/config/site.settings';
 import { ThemeProviders } from './theme-providers';
 import { Metadata } from 'next';
@@ -11,16 +11,11 @@ import { AnalyticsWrapper } from '@/components/shared/Analytics';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
 
-const displayFont = Playfair_Display({
+const parkinsans = Parkinsans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-space-display',
-});
-
-const baseFont = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-default',
+  variable: '--font-parkinsans',
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 const globalColors = colors;
@@ -81,7 +76,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.language}
-      className={`${baseFont.variable} ${displayFont.variable} scroll-smooth`}
+      className={`${parkinsans.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
