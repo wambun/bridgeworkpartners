@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 
@@ -92,8 +93,14 @@ const HeroSection = () => {
                 </p>
 
                 <div className="flex items-center gap-4 pt-4 border-t border-white/20">
-                  <div className="w-12 h-12 bg-gradient-to-br from-accent1-500/40 to-accent1-600/40 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
-                    <span className="text-lg font-semibold">WG</span>
+                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
+                    <Image
+                      src="/images/team/wanda-granier.png"
+                      alt="Wanda Granier"
+                      width={56}
+                      height={56}
+                      className="object-cover object-top w-full h-full"
+                    />
                   </div>
                   <div>
                     <p className="font-medium">Wanda Granier</p>
@@ -108,17 +115,17 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="absolute -bottom-4 -left-4 glass-card rounded-2xl p-4 shadow-premium-lg"
+              className="absolute -bottom-6 left-6 bg-white rounded-xl px-4 py-3 shadow-xl border border-gray-100"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30">
+                <div className="w-9 h-9 bg-gradient-to-br from-accent1-400 to-accent1-500 rounded-lg flex items-center justify-center shadow-md">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900">Top Rated</p>
-                  <p className="text-sm text-gray-500">HR Consulting Firm</p>
+                  <p className="font-semibold text-gray-900 text-sm">Top Rated</p>
+                  <p className="text-xs text-gray-500">HR Consulting Firm</p>
                 </div>
               </div>
             </motion.div>
