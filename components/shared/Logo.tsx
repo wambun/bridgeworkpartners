@@ -34,12 +34,14 @@ const Logo = ({
     dark: {
       primary: '#1B5E5E',      // Teal
       accent: '#E5A855',       // Gold
-      text: 'text-gray-900',
+      textBold: 'text-gray-900',
+      textLight: 'text-gray-500',
     },
     light: {
       primary: '#FFFFFF',
       accent: '#E5A855',       // Gold
-      text: 'text-white',
+      textBold: 'text-white',
+      textLight: 'text-white/60',
     },
   };
 
@@ -109,15 +111,14 @@ const Logo = ({
   return (
     <div className={cn('flex items-center gap-2.5', className)}>
       <LogoMark />
-      <span
-        className={cn(
-          'font-display font-semibold tracking-tight',
-          currentSize.text,
-          currentColors.text
-        )}
-      >
-        BridgeWork
-      </span>
+      <div className={cn('font-display tracking-tight', currentSize.text)}>
+        <span className={cn('font-bold', currentColors.textBold)}>
+          BRIDGEWORK
+        </span>
+        <span className={cn('font-medium', currentColors.textLight)}>
+          PARTNERS
+        </span>
+      </div>
     </div>
   );
 };
