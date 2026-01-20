@@ -4,10 +4,10 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, useSpring, useTransform } from 'framer-motion';
 
 const stats = [
-  { value: 15, suffix: '+', label: 'Years of Excellence', color: 'accent1' },
-  { value: 1000, suffix: '+', label: 'Successful Placements', color: 'accent2' },
-  { value: 98, suffix: '%', label: 'Client Satisfaction', color: 'accent3' },
-  { value: 250, suffix: '+', label: 'Partner Companies', color: 'primary' },
+  { value: 15, suffix: '+', label: 'Years of Excellence' },
+  { value: 1000, suffix: '+', label: 'Successful Placements' },
+  { value: 98, suffix: '%', label: 'Client Satisfaction' },
+  { value: 250, suffix: '+', label: 'Partner Companies' },
 ];
 
 function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
@@ -32,7 +32,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 
   return (
     <span ref={ref}>
-      {displayValue}
+      {displayValue.toLocaleString()}
       {suffix}
     </span>
   );
@@ -40,70 +40,30 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 
 const StatsSection = () => {
   return (
-    <section className="py-16 lg:py-24 relative overflow-hidden">
-      {/* Premium Gradient Mesh Background */}
-      <div className="absolute inset-0 premium-gradient-mesh" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/95 via-primary-600/95 to-primary-700/95" />
-
-      {/* Animated Decorative Orbs */}
-      <motion.div
-        animate={{
-          y: [-10, 10, -10],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-0 left-1/4 w-64 h-64 bg-accent1-500 rounded-full blur-3xl opacity-20"
-      />
-      <motion.div
-        animate={{
-          y: [10, -15, 10],
-          x: [-5, 5, -5],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute bottom-0 right-1/3 w-48 h-48 bg-accent2-500 rounded-full blur-3xl opacity-20"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-1/2 -translate-y-1/2 right-0 w-56 h-56 bg-accent3-500 rounded-full blur-3xl"
-      />
+    <section className="py-20 lg:py-28 bg-gray-50 relative overflow-hidden">
+      {/* Subtle background decoration */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-50/50 via-transparent to-transparent" />
 
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 40, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.15,
-                ease: [0.25, 0.4, 0.25, 1] as const,
+                duration: 0.5,
+                delay: index * 0.1,
               }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="glass-card-dark rounded-2xl p-6 lg:p-8 text-center hover:bg-white/15 transition-colors group cursor-default"
+              className="text-center"
             >
               <motion.div
-                className="text-4xl lg:text-5xl font-display font-semibold text-white mb-2"
-                initial={{ scale: 0.5 }}
+                className="text-5xl lg:text-6xl font-display font-bold text-primary-600 mb-3"
+                initial={{ scale: 0.8 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
+                transition={{ duration: 0.4, delay: index * 0.1 + 0.1 }}
               >
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               </motion.div>
@@ -111,19 +71,11 @@ const StatsSection = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15 + 0.4 }}
-                className="text-primary-100 text-sm lg:text-base"
+                transition={{ delay: index * 0.1 + 0.3 }}
+                className="text-gray-600 font-medium"
               >
                 {stat.label}
               </motion.div>
-              {/* Accent indicator */}
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: 48 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 + 0.5, duration: 0.4 }}
-                className={`h-1 mx-auto mt-4 rounded-full bg-${stat.color}-500 opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all`}
-              />
             </motion.div>
           ))}
         </div>
