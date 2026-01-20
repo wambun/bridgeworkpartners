@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { headerNavLinks } from '@/data/config/headerNavLinks';
+import { LogoLink } from './Logo';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,16 +38,7 @@ const Header = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <nav className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 z-10">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">B</span>
-                </div>
-                <span className="font-display font-semibold text-xl text-gray-900">
-                  BridgeWork
-                </span>
-              </div>
-            </Link>
+            <LogoLink colorScheme="dark" />
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
